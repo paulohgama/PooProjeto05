@@ -14,7 +14,7 @@ public class Question {
     private String aswer;
     private String[] alternatives;
 
-    public Questions(String question, String aswer, String[] alternatives) {
+    public Question(String question, String aswer, String[] alternatives) {
         this.question = question;
         this.aswer = aswer;
         this.alternatives = alternatives;

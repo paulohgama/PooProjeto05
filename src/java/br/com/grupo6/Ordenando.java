@@ -15,21 +15,21 @@ public class Ordenando {
         j = fim;
    
         meio = (int) ((i + j) / 2);
-        pivo = Rankings.getMelhores().get(meio).getPercent();
+        pivo = Rankings.getMelhores().get(meio).getResultadoTeste();
    
         do
         {
-            while (Rankings.getMelhores().get(i).getPercent() < pivo) i = i + 1;
-            while (Rankings.getMelhores().get(j).getPercent() > pivo) j = j - 1;
+            while (Rankings.getMelhores().get(i).getResultadoTeste() < pivo) i = i + 1;
+            while (Rankings.getMelhores().get(j).getResultadoTeste() > pivo) j = j - 1;
       
             if(i <= j)
             {
-                aux = Rankings.getMelhores().get(i).getPercent();
-                User u = Rankings.getMelhores().get(i);
-                u.setPercent(Rankings.getMelhores().get(j).getPercent());
+                aux = Rankings.getMelhores().get(i).getResultadoTeste();
+                Usuario u = Rankings.getMelhores().get(i);
+                u.setResultadoTeste(Rankings.getMelhores().get(j).getResultadoTeste());
                 Rankings.getMelhores().set(i, u);
                 u = Rankings.getMelhores().get(j);
-                u.setPercent(aux);
+                u.setResultadoTeste(aux);
                 Rankings.getMelhores().set(j, u);
                 i = i + 1;
                 j = j - 1;
@@ -47,12 +47,12 @@ public class Ordenando {
         double[] apoio = new double[Rankings.getMelhores().size()];
         for(int i = 0; i < Rankings.getMelhores().size(); i++)
         {
-            apoio[i] = Rankings.getMelhores().get(i).getPercent();
+            apoio[i] = Rankings.getMelhores().get(i).getResultadoTeste();
         }
         for(int i = 0; i < Rankings.getMelhores().size(); i++)
         {
-            User u = Rankings.getMelhores().get(i);
-            u.setPercent(apoio[cont]);
+            Usuario u = Rankings.getMelhores().get(i);
+            u.setResultadoTeste(apoio[cont]);
             Rankings.getMelhores().set(i, u);
             cont--;
         }

@@ -12,14 +12,14 @@ import java.util.ArrayList;
  * @author PauloHGama
  */
 public class Rankings {
-    public static ArrayList<User> ultimos = new ArrayList();
-    public static ArrayList<User> melhores = new ArrayList();
+    public static ArrayList<Usuario> ultimos = new ArrayList();
+    public static ArrayList<Usuario> melhores = new ArrayList();
 
-    public static ArrayList<User> getUltimos() {
+    public static ArrayList<Usuario> getUltimos() {
         return ultimos;
     }
 
-    public static ArrayList<User> getMelhores() {
+    public static ArrayList<Usuario> getMelhores() {
         return melhores;
     }
     

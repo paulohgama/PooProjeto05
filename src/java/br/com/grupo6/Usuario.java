@@ -6,7 +6,16 @@ package br.com.grupo6;
 public class Usuario {
     private String nome;
     private String dataTeste;
+    private String[] resposta;
     private double resultadoTeste;
+
+    public String[] getResposta() {
+        return resposta;
+    }
+
+    public void setResposta(String[] resposta) {
+        this.resposta = resposta;
+    }
 
     public String getNome() {
         return nome;
