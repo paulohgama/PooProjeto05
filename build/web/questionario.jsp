@@ -14,6 +14,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%@include file="WEB-INF/jspf/navbar.jspf" %>
         <%if(session.getAttribute("nomeSessao") == null || session.getAttribute("nomeSessao").equals("")) {
             response.sendRedirect("home.jsp?user=deslogado");
         }%>
@@ -35,7 +36,6 @@
                 </td>
             </tr>
             <%}%>
-            <hr>
             </table>
             <br>
             <input type="submit" name="tested" value="Enviar">

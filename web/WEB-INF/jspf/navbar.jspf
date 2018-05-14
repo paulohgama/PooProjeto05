@@ -29,10 +29,10 @@ li a:hover {
             <nav>
            <ul>
             <li >
-              <a href="#">Home </a>
+              <a href="home.jsp">Home </a>
             </li>
             <li class="nav-item px-lg-4">
-              <a href="#">Questionário </a>
+              <a href="questionario.jsp">Questionário </a>
             </li>
           </ul>
             </nav>

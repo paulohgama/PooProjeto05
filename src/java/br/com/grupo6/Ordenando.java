@@ -10,6 +10,8 @@ public class Ordenando {
     {
         int i, j, meio;
         double pivo, aux;
+        String nome;
+        long data;
         
         i = inicio;
         j = fim;
@@ -24,12 +26,18 @@ public class Ordenando {
       
             if(i <= j)
             {
-                aux = Rankings.getMelhores().get(i).getResultadoTeste();
                 Usuario u = Rankings.getMelhores().get(i);
+                aux = u.getResultadoTeste();
+                nome = u.getNome();
+                data = u.getDataTeste();
+                u.setDataTeste(Rankings.getMelhores().get(j).getDataTeste());
+                u.setNome(Rankings.getMelhores().get(j).getNome());
                 u.setResultadoTeste(Rankings.getMelhores().get(j).getResultadoTeste());
                 Rankings.getMelhores().set(i, u);
                 u = Rankings.getMelhores().get(j);
                 u.setResultadoTeste(aux);
+                u.setDataTeste(data);
+                u.setNome(nome);
                 Rankings.getMelhores().set(j, u);
                 i = i + 1;
                 j = j - 1;
