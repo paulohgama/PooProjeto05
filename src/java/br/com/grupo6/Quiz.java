@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author PauloHGama
+ * @author João Soler
  */
 public class Quiz {
     private static ArrayList<Question> test;
@@ -13,11 +13,16 @@ public class Quiz {
         if(test == null)
         {
             test = new ArrayList<>();
-            test.add(new Question("1+2", "3", new String[]{"1","2","3"}));
-            test.add(new Question("1+3", "4", new String[]{"1","2","4"}));
-            test.add(new Question("1+4", "5", new String[]{"1","3","5"}));
-            test.add(new Question("1+5", "6", new String[]{"2","4","6"}));
-            test.add(new Question("1+6", "7", new String[]{"2","3","7"}));
+            test.add(new Question("1 - Qual o nome do primeiro presidente do Brasil", "Deodoro da Fonseca", new String[]{"Dedoro da Fonseca","Martin Afonso","Tiago Thomaz"}));
+            test.add(new Question("2 - Em qual ano Cristo nasceu?", "Ano 0", new String[]{" Ano 32","Ano 0","Ano 1998"}));
+            test.add(new Question("3 - Qual a fronteira mais antiga da Europa?", "A portuguesa", new String[]{"A irlandesa","A italiana","A portuguesa"}));
+            test.add(new Question("4 - Qual a primeira vila do Brasil?", "São Vicente", new String[]{"São Vicente","Praia Grande","Cubatão"}));
+            test.add(new Question("5 - Complete: O sapo sabia...", "...assobiar", new String[]{"...assobiar","...gritar",".. sair pulando"}));
+            test.add(new Question("6 -Complete: O rato roeu a roupa do rei... ", "de Roma!", new String[]{"do Lesoto","de Roma!","de Wakanda"}));
+            test.add(new Question("7 - Quais as letras do alfabeto sem as consoantes?", "A-E-I-O-U", new String[]{"AAaaaaaaaaaaaaaaaaaa","123","A-E-I-O-U"}));
+            test.add(new Question("8 - Qual o oceano entre a América e a África", "Atlântico", new String[]{"Atlântico","Índico","Pacífico"}));
+            test.add(new Question("9 - Qual a cidade símbolo da qualidade de vida?", "São Vicente", new String[]{"São Vicente","Zurich","Oslo"}));
+            test.add(new Question("10- Qual país tem os melhores maratonistas?", "Quênia", new String[]{"Trinnidad e Tobago","Ilhas Jersey","Quênia"}));
         }
         
     return test;
