@@ -5,7 +5,7 @@ package br.com.grupo6;
 
 public class Usuario {
     private String nome;
-    private String dataTeste;
+    private long dataTeste;
     private String[] resposta;
     private double resultadoTeste;
 
@@ -25,11 +25,11 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public String getDataTeste() {
+    public long getDataTeste() {
         return dataTeste;
     }
 
-    public void setDataTeste(String dataTeste) {
+    public void setDataTeste(long dataTeste) {
         this.dataTeste = dataTeste;
     }
 

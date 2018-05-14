@@ -4,6 +4,8 @@
     Author     : Bran
 --%>
 
+<%@page import="br.com.grupo6.Question"%>
+<%@page import="br.com.grupo6.Quiz"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,17 +17,30 @@
         <%if(session.getAttribute("nomeSessao") == null || session.getAttribute("nomeSessao").equals("")) {
             response.sendRedirect("home.jsp?user=deslogado");
         }%>
-        <h1>Quiz</h1>
+        <h1 align="center">Quiz</h1>
         <form action="pontos.jsp">
+            <center>
+                <table border="1">
             <%for(int i = 0; i < Quiz.getTest().size(); i++){%>
-            <%Questions q = Quiz.getTest().get(i);%>
-            <h2><%=q.getQuestion()%></h2>
-            <input type="radio" name="<%=q.getQuestion()%>" value="<%=q.getAlternatives()[0]%>"/><%=q.getAlternatives()[0]%>            
-            <input type="radio" name="<%=q.getQuestion()%>" value="<%=q.getAlternatives()[1]%>"/><%=q.getAlternatives()[1]%>            
-            <input type="radio" name="<%=q.getQuestion()%>" value="<%=q.getAlternatives()[2]%>"/><%=q.getAlternatives()[2]%>            
+            <%Question q = Quiz.getTest().get(i);%>
+            <tr align="center"><th colspan="3"><%=q.getQuestion()%></th></tr>
+            <tr><td>
+                    <input type="radio" name="<%=q.getQuestion()%>" value="<%=q.getAlternatives()[0]%>"/><%=q.getAlternatives()[0]%>            
+                </td>
+                <td>
+                    <input type="radio" name="<%=q.getQuestion()%>" value="<%=q.getAlternatives()[1]%>"/><%=q.getAlternatives()[1]%>            
+                </td>
+                <td>
+                    <input type="radio" name="<%=q.getQuestion()%>" value="<%=q.getAlternatives()[2]%>"/><%=q.getAlternatives()[2]%>            
+                </td>
+            </tr>
             <%}%>
             <hr>
+            </table>
+            <br>
             <input type="submit" name="tested" value="Enviar">
+            
+            </center>
         </form>
     </body>
 </html>

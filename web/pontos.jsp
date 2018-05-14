@@ -4,9 +4,9 @@
     Author     : PauloHGama
 --%>
 
+<%@page import="java.util.Date"%>
 <%@page import="br.com.grupo6.BD"%>
-<%@page import="br.com.grupo6.User"%>
-<%@page import="br.com.fatecpg.poo.teste.Ordenando"%>
+<%@page import="br.com.grupo6.Ordenando"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="br.com.grupo6.Usuario"%>
 <%@page import="br.com.grupo6.Rankings"%>
@@ -31,8 +31,8 @@
             }
         }
         grade = 100.0 * ((double)(count) / Quiz.getTest().size());
-        User user = new User();
-        user.setPercent(grade);
+        Usuario user = new Usuario();
+        user.setResultadoTeste(grade);
         String[] resp = new String[Quiz.getTest().size()];
         for(int j = 0; j < Quiz.getTest().size(); j++)
         {
@@ -40,16 +40,19 @@
             resp[j] = request.getParameter(q.getQuestion());
         }        
         user.setResposta(resp);
-        user.setUser(BD.user);
+        user.setNome(BD.user);
+        Date data = new Date();
+        user.setDataTeste((data.getTime()));
         Rankings.getMelhores().add(user);
         Ordenando or = new Ordenando();
         or.Quick(0, Rankings.getMelhores().size()-1);
         or.OrdemInversa();
         
-        user = new User();
-        user.setPercent(grade);
+        user = new Usuario();
+        user.setResultadoTeste(grade);
+        user.setDataTeste((data.getTime()));
         user.setResposta(resp);
-        user.setUser(BD.user);
+        user.setNome(BD.user);
         Rankings.getUltimos().add(0, user);
     }  
 %>

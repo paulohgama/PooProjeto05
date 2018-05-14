@@ -1,95 +1,111 @@
 <%-- 
     Document   : home
-    Created on : 11/05/2018, 20:40:43
-    Author     : Bran
+    Created on : 07/05/2018, 21:34:54
+    Author     : PauloHGama
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="br.com.grupo6.BD"%>
-<%@page import="br.com.grupo6.Usuario"%>
+<%@page import="br.com.grupo6.Rankings"%>
 <%@page import="br.com.grupo6.Question"%>
+<%@page import="br.com.grupo6.Quiz"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<%
+    int cont = 0;
+    String user = BD.user;
+    boolean legitimo;
+%>
 <html>
     <head>
-            <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Login</title>
-
-       <!-- Bootstrap core CSS -->
-    
-
-    <!-- Custom fonts for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/business-casual.min.css" rel="stylesheet">
-
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Web Quiz</title>
+        <%@include file="WEB-INF/jspf/link.jspf" %>
     </head>
     <body>
-        <%@ include file="WEB-INF/jspf/navbar.jspf" %>
-        
-        <%String name="";
-        if (request.getParameter("user") == "deslogado"){%><script language="JavaScript">alert("Para acessar o questionário é necessário estar logado!");</script><%}%>
-       
-       <%try {
-           if(request.getParameter("btnUsuario") != null){
-               String nomeUsuario = request.getParameter("inputUsuario");
-               Usuario usuario = new Usuario();
-               usuario.setNome(nomeUsuario);
-               BD.getUsuarios().add (usuario);
-               session.setAttribute("nomeSessao", nomeUsuario);
-           }
-           else 
-           {             
-           }
-       } catch(Exception ex) {
-           %><script language="JavaScript">alert("Digite um valor válido!");</script><%
-       }      
-       %>
-       
-       <%if(session.getAttribute("nomeSessao") == null || session.getAttribute("nomeSessao").equals("")) {%>
-            <section class="page-section cta">
-        <center>
-            <form>
-            Login:
-            <input type="email" id="inputEmail" placeholder="Usuario@email.com" name="inputUsuario" required>
-            <button type="submit" name="btnUsuario" class="btn">Logar</button>
-            
-
-        <%} else {
-        name=(String)session.getAttribute("nomeSessao"); %>
+        <%@include file="WEB-INF/jspf/navbar.jspf" %>
+        <h1>Web Quiz</h1>
+        <%if(BD.user != null || BD.user != "") {%>
                
-           <p>Olá, <%=name%></p>
+           <p>Olá, <%=user%></p>
         <br>
-        <form name="form1" method="post">
+        <form action="login.jsp" name="form1" method="post">
         <input type="hidden" name="buttonName">
         <input type="button" value="Deslogar" onclick="button1()" class="btn">
         </form>
         
-        <%}%>
-            
-            <% 
-        if(request.getParameter("buttonName") != null) {
-               session.invalidate();
-               response.sendRedirect("home.jsp");
-        }
-    %>
-
-    
-
-    <script language="JavaScript">
         
+        <%if(Rankings.getMelhores().size() > 0){%>
+        <h3>TOP 10 MELHORES PONTUAÇÕES</h3>
+            <table border="1">
+            <tr>
+                <%
+                    for(int j = 0; j < Quiz.getTest().size(); j++){
+                    Question q = Quiz.getTest().get(j);%>
+                    <th>Pergunta: <%= q.getQuestion() %></th>
+                <%}%>
+                <th>Porcentagem</th>
+                
+            </tr>
+            <% 
+                for(int i = 0; i < Rankings.getMelhores().size(); i++){%>
+                <tr>
+                    <%
+                        legitimo = (user == Rankings.getMelhores().get(i).getNome());
+                        for(int j = 0; j < Rankings.getMelhores().get(i).getResposta().length; j++){%>
+                        <%if(legitimo){
+                            
+                         if(j==0) cont++;%>
+                        <td>Resposta: <%=(String)Rankings.getMelhores().get(i).getResposta()[j]%></td>
+                        <%}
+                    if(cont > 8)
+                    {
+                        i=Rankings.getMelhores().size();
+                    }%>
+                        <%}%>
+                <%if(legitimo){%>
+                <td><%=Rankings.getMelhores().get(i).getResultadoTeste()%>%</td>
+                </tr>
+            <%}}%>
+        </table>
+        <%}%>
+        <hr>
+        <%if(Rankings.getUltimos().size() > 0){%>
+        <h3>AS 10 ULTIMAS PONTUAÇÕES</h3>
+        <table border="1">
+            <tr>
+                <%for(int j = 0; j < Quiz.getTest().size(); j++){
+                    Question q = Quiz.getTest().get(j);%>
+                    <th>Pergunta: <%= q.getQuestion() %></th>
+                <%}%>
+                    <th>Porcentagem</th>
+            </tr>
+            <%for(int i = 0; i < Rankings.getUltimos().size();  i++){%>
+                <tr>
+                    <%for(int j = 0; j < Rankings.getUltimos().get(i).getResposta().length; j++){%>
+                    <%if(Rankings.getUltimos().get(i).getNome()==user){%>
+                    <td>Resposta: <%= Rankings.getUltimos().get(i).getResposta()[j]%></td>
+                    <%}if(i == 9){
+                        i = Rankings.getUltimos().size();}%>
+                <%}%>
+                <%if(Rankings.getUltimos().get(i).getNome()==(user)){%>
+                    <td><%=Rankings.getUltimos().get(i).getResultadoTeste()%>%</td>
+                </tr>
+            <%}}%>
+        </table>
+        <%}}else{%>
+        <form action="login.jsp" name="form2" method="post">
+            <input type="hidden" name="deslogar" value="deslog">
+        </form>
+        <script language="JavaScript">
+            form2.submit();
+        </script>
+        <%}%>
+        <script language="JavaScript">
         function button1()
         {
             document.form1.buttonName.value = "yes";
             form1.submit();
         } 
-        
-    </script>
-            </center>
-    </section>
-     </body>
+        </script>
+    </body>
 </html>
