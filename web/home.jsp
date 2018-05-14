@@ -17,29 +17,19 @@
 
     <title>Login</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+       <!-- Bootstrap core CSS -->
+    
 
     <!-- Custom fonts for this template -->
     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
 
-
+    <!-- Custom styles for this template -->
+    <link href="css/business-casual.min.css" rel="stylesheet">
 
     </head>
     <body>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-secondary py-lg-4" id="mainNav">
- <ul class="navbar-nav mx-auto">
-            <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="home.jsp">Home
-              </a>
-            </li>
-            <li class="nav-item px-lg-4">
-              <a class="nav-link text-uppercase text-expanded" href="questionario.jsp">Questionário
-              </a>
-            </li>
-          </ul>
-            </nav>
+        <%@ include file="WEB-INF/jspf/navbar.jspf" %>
         
         <%String name="";
         if (request.getParameter("user") == "deslogado"){%><script language="JavaScript">alert("Para acessar o questionário é necessário estar logado!");</script><%}%>
@@ -67,7 +57,7 @@
             Login:
             <input type="email" id="inputEmail" placeholder="Usuario@email.com" name="inputUsuario" required>
             <button type="submit" name="btnUsuario" class="btn">Logar</button>
-            </form>
+            
 
         <%} else {
         name=(String)session.getAttribute("nomeSessao"); %>
