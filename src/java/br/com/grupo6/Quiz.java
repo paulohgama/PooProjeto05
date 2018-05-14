@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author João Soler
+ * @author joaop
  */
 public class Quiz {
     private static ArrayList<Question> test;

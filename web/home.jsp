@@ -38,6 +38,7 @@
         <h3>TOP 10 MELHORES PONTUAÇÕES</h3>
             <table border="1">
                 <tr>
+                    <th>Nº</th>
                 <th>Porcentagem</th>
                 <th>Nome</th>
                 </tr>
@@ -45,22 +46,22 @@
                 for(int i = 0; i < Rankings.getMelhores().size(); i++){%>
                 <tr>
                     <%
-                        cont++;%>
-                        <%
-                    if(cont > 8)
+                        cont++;
+                    if(cont == 10)
                     {
                         i=Rankings.getMelhores().size();
-                    }%>
+                    }
+                    %>
+                    <td><%=(cont)%>.</td>
                 <td><%=Rankings.getMelhores().get(i).getResultadoTeste()%>%</td>
-                </tr>
-                <tr>
-                    <td><%= Rankins.getMelhores().get(i).getNome()%></td>
+                    <td><%= Rankings.getMelhores().get(i).getNome()%></td>
                 </tr>
             <%}%>
         </table>
         <%}%>
         <hr>
-        <%if(Rankings.getUltimos().size() > 0){%>
+        <%cont=0;
+            if(Rankings.getUltimos().size() > 0){%>
         <h3>AS 10 ULTIMAS PONTUAÇÕES</h3>
         <table border="1">
                 <tr>
@@ -72,14 +73,14 @@
                 for(int i = 0; i < Rankings.getUltimos().size(); i++){%>
                 <tr>
                     <%cont++;
-                    if(cont > 8)
+                    if(cont == 10)
                     {
                         i=Rankings.getUltimos().size();
                     }
                     %>
-                    <td><%=(cont+1)%>.</td>
+                    <td><%=(cont)%>.</td>
                 <td><%=Rankings.getUltimos().get(i).getResultadoTeste()%>%</td>
-                    <td><%= Rankins.getUltimos().get(i).getNome()%></td>
+                    <td><%= Rankings.getUltimos().get(i).getNome()%></td>
                 </tr>
             <%}%>
         </table>

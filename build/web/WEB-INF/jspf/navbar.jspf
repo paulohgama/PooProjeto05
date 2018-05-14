@@ -27,12 +27,15 @@ li a:hover {
 }
 </style>
             <nav>
-           <ul>
-            <li >
-              <a href="#">Home </a>
-            </li>
-            <li class="nav-item px-lg-4">
-              <a href="#">Questionário </a>
-            </li>
-          </ul>
+                    <ul>
+                        <li >
+                            <a href="home.jsp">Home </a>
+                        </li>
+                        <li class="nav-item px-lg-4">
+                            <a href="questionario.jsp">Questionário </a>
+                        </li>
+                        <li class="nav-item px-lg-4">
+                            <a href="about.jsp">Sobre</a>
+                        </li>
+                   </ul>
             </nav>
