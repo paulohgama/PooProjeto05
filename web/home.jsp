@@ -10,16 +10,39 @@
 <%@page import="br.com.grupo6.Question"%>
 <html>
     <head>
+            <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Login</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+
+
+
     </head>
     <body>
-        <ul class="nav">
-            <li class="active"><a href="home.jsp">Home</a></li>
-            <li><a href="questionario.jsp">Questionário</a></li>
-        </ul>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-secondary py-lg-4" id="mainNav">
+ <ul class="navbar-nav mx-auto">
+            <li class="nav-item px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="home.jsp">Home
+              </a>
+            </li>
+            <li class="nav-item px-lg-4">
+              <a class="nav-link text-uppercase text-expanded" href="questionario.jsp">Questionário
+              </a>
+            </li>
+          </ul>
+            </nav>
         
         <%String name="";
         if (request.getParameter("user") == "deslogado"){%><script language="JavaScript">alert("Para acessar o questionário é necessário estar logado!");</script><%}%>
-        <!--tela de login--> 
        
        <%try {
            if(request.getParameter("btnUsuario") != null){
@@ -38,11 +61,14 @@
        %>
        
        <%if(session.getAttribute("nomeSessao") == null || session.getAttribute("nomeSessao").equals("")) {%>
-        <form>
+            <section class="page-section cta">
+        <center>
+            <form>
             Login:
             <input type="email" id="inputEmail" placeholder="Usuario@email.com" name="inputUsuario" required>
             <button type="submit" name="btnUsuario" class="btn">Logar</button>
             </form>
+
         <%} else {
         name=(String)session.getAttribute("nomeSessao"); %>
                
@@ -73,5 +99,7 @@
         } 
         
     </script>
+            </center>
+    </section>
      </body>
 </html>
