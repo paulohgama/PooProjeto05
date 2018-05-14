@@ -35,7 +35,7 @@
 
     </head>
     <body>
-        <%@ include file="WEB-INF/jspf/navbar.jspf" %>
+        <%@ include file="WEB-INF/jspf/navbarlogin.jspf" %>
         
         <%String name="";
         if (request.getParameter("user") == "deslogado"){%><script language="JavaScript">alert("Para acessar o questionário é necessário estar logado!");</script><%}%>
