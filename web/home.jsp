@@ -47,16 +47,18 @@
                 <tr>
                     <%
                         cont++;
-                    if(cont == 10)
-                    {
-                        i=Rankings.getMelhores().size();
-                    }
+                    
                     %>
                     <td><%=(cont)%>.</td>
                 <td><%=Rankings.getMelhores().get(i).getResultadoTeste()%>%</td>
                     <td><%= Rankings.getMelhores().get(i).getNome()%></td>
                 </tr>
-            <%}%>
+                
+            <%if(cont == 10)
+                    {
+                        i=Rankings.getMelhores().size();
+                    } }%>
+            
         </table>
         <%}%>
         <hr>
@@ -73,16 +75,17 @@
                 for(int i = 0; i < Rankings.getUltimos().size(); i++){%>
                 <tr>
                     <%cont++;
-                    if(cont == 10)
-                    {
-                        i=Rankings.getUltimos().size();
-                    }
+ 
                     %>
                     <td><%=(cont)%>.</td>
                 <td><%=Rankings.getUltimos().get(i).getResultadoTeste()%>%</td>
                     <td><%= Rankings.getUltimos().get(i).getNome()%></td>
                 </tr>
-            <%}%>
+                
+            <%                  if(cont == 10)
+                    {
+                        i=Rankings.getUltimos().size();
+                    } }%>
         </table>
         <%}}else{%>
         <form action="login.jsp" name="form2" method="post">
