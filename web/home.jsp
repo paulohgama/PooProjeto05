@@ -4,6 +4,8 @@
     Author     : PauloHGama
 --%>
 
+<%@page import="br.com.grupo6.Usuario"%>
+<%@page import="br.com.grupo6.ManipulandoArquivos"%>
 <%@page import="br.com.grupo6.BD"%>
 <%@page import="br.com.grupo6.Rankings"%>
 <%@page import="br.com.grupo6.Question"%>
@@ -14,6 +16,44 @@
     int cont = 0;
     String user = BD.user;
     boolean legitimo;
+    if(Rankings.getMelhores().isEmpty())
+    {
+        ManipulandoArquivos ma = new ManipulandoArquivos();
+        String[] sa = ma.leitor("melhores.txt");
+        for(int i = 0; i < sa.length; i++)
+        {
+            int nome = sa[i].indexOf("Nome:") + 5;
+            int parada1 = sa[i].indexOf(";", nome);
+            int grade = sa[i].indexOf("Grande:") + 6;
+            int parada2 = sa[i].indexOf("Nome:", grade);
+            String pedaco;
+            pedaco = sa[i].substring(nome, parada1);
+            Usuario u = new Usuario();
+            u.setNome(pedaco);
+            pedaco = sa[i].substring(grade, parada2);
+            u.setResultadoTeste(Double.parseDouble(pedaco));
+            Rankings.getMelhores().add(u);
+        }
+    }
+    if(Rankings.getUltimos().isEmpty())
+    {
+        ManipulandoArquivos ma = new ManipulandoArquivos();
+        String[] sa = ma.leitor("ultimos.txt");
+        for(int i = 0; i < sa.length; i++)
+        {
+            int nome = sa[i].indexOf("Nome:") + 5;
+            int parada1 = sa[i].indexOf(";", nome);
+            int grade = sa[i].indexOf("Grande:") + 6;
+            int parada2 = sa[i].indexOf("Nome:", grade);
+            String pedaco;
+            pedaco = sa[i].substring(nome, parada1);
+            Usuario u = new Usuario();
+            u.setNome(pedaco);
+            pedaco = sa[i].substring(grade, parada2);
+            u.setResultadoTeste(Double.parseDouble(pedaco));
+            Rankings.getUltimos().add(u);
+        }
+    }
 %>
 <html>
     <head>
