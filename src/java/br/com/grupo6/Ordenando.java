@@ -29,14 +29,11 @@ public class Ordenando {
                 Usuario u = Rankings.getMelhores().get(i);
                 aux = u.getResultadoTeste();
                 nome = u.getNome();
-                data = u.getDataTeste();
-                u.setDataTeste(Rankings.getMelhores().get(j).getDataTeste());
                 u.setNome(Rankings.getMelhores().get(j).getNome());
                 u.setResultadoTeste(Rankings.getMelhores().get(j).getResultadoTeste());
                 Rankings.getMelhores().set(i, u);
                 u = Rankings.getMelhores().get(j);
                 u.setResultadoTeste(aux);
-                u.setDataTeste(data);
                 u.setNome(nome);
                 Rankings.getMelhores().set(j, u);
                 i = i + 1;
@@ -53,14 +50,17 @@ public class Ordenando {
     {
         int cont = Rankings.getMelhores().size()-1;
         double[] apoio = new double[Rankings.getMelhores().size()];
+        String[] apoioN = new String[Rankings.getMelhores().size()];
         for(int i = 0; i < Rankings.getMelhores().size(); i++)
         {
             apoio[i] = Rankings.getMelhores().get(i).getResultadoTeste();
+            apoioN[i] = Rankings.getMelhores().get(i).getNome();
         }
         for(int i = 0; i < Rankings.getMelhores().size(); i++)
         {
             Usuario u = Rankings.getMelhores().get(i);
             u.setResultadoTeste(apoio[cont]);
+            u.setNome(apoioN[cont]);
             Rankings.getMelhores().set(i, u);
             cont--;
         }
