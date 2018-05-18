@@ -37,7 +37,7 @@ public class ManipulandoArquivos {
         return vetor;
     }
  
-    public static void escritor(String path, String[] vetor) throws IOException {
+    public void escritor(String path, String[] vetor) throws IOException {
         BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
         String linha = "";
         for(int i = 0; i < vetor.length; i++)

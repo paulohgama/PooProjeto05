@@ -4,6 +4,7 @@
     Author     : Bran
 --%>
 
+<%@page import="br.com.grupo6.Rankings"%>
 <%@page import="br.com.grupo6.ManipulandoArquivos"%>
 <%@page import="br.com.grupo6.Usuarios"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,6 +15,25 @@
     if(request.getParameter("buttonName") != null) {
                session.invalidate();
                BD.user = "";
+               ManipulandoArquivos ma = new ManipulandoArquivos();
+               String[] ultimos, melhores, usuarios;
+               ultimos = new String[Rankings.getMelhores().size()];
+               melhores = new String[ultimos.length];
+               usuarios = new String[BD.getUsuarios().size()];
+               for(int i = 0; i < Rankings.getMelhores().size(); i++)
+               {
+                   ultimos[i] = "Nome:" + Rankings.getUltimos().get(i).getNome() + ";" +
+                                "Grade:" + Rankings.getUltimos().get(i).getResultadoTeste() + ";";
+                   melhores[i] = "Nome:" + Rankings.getMelhores().get(i).getNome() + ";" +
+                                "Grade:" + Rankings.getMelhores().get(i).getResultadoTeste() + ";";
+               }
+               for(int i = 0; i < Rankings.getMelhores().size(); i++)
+               {
+                   usuarios[i] = "Nome:" + BD.getUsuarios().get(i).getNome() + ";";
+               }
+               ma.escritor("ultimos.txt", ultimos);
+               ma.escritor("melhores.txt", melhores);
+               ma.escritor("usuarios.txt", ultimos);
     }
 %>
 <html>
