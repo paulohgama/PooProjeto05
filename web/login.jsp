@@ -4,6 +4,8 @@
     Author     : Bran
 --%>
 
+<%@page import="br.com.grupo6.ManipulandoArquivos"%>
+<%@page import="br.com.grupo6.Usuarios"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="br.com.grupo6.BD"%>
 <%@page import="br.com.grupo6.Usuario"%>
@@ -44,11 +46,36 @@
            if(request.getParameter("btnUsuario") != null){
                
                String nomeUsuario = request.getParameter("inputUsuario");
-               Usuario usuario = new Usuario();
-               usuario.setNome(nomeUsuario);
-               BD.getUsuarios().add (usuario);
-               session.setAttribute("nomeSessao", nomeUsuario);
-               BD.user = (String) session.getAttribute("nomeSessao");
+               ManipulandoArquivos ma = new ManipulandoArquivos();
+               String[] nome = ma.leitor("usuarios.txt");
+               for(int i = 0; i < nome.length; i++)
+               {
+                   Usuarios u = new Usuarios();
+                   u.setNome(nome[i]);
+                   BD.getUsuarios().add(u);
+               }
+               boolean existe = false;
+               for(int i = 0; i < BD.getUsuarios().size(); i++)
+               {
+                   if(BD.getUsuarios().get(i).getNome().equals(nomeUsuario))
+                   {
+                       i = BD.getUsuarios().size();
+                       existe = true;
+                   }
+               }
+               if(!existe)
+               {
+                    session.setAttribute("nomeSessao", nomeUsuario);
+                    BD.user = (String) session.getAttribute("nomeSessao");
+               }
+               else
+               {
+                    Usuarios usuario = new Usuarios();
+                    usuario.setNome(nomeUsuario);
+                    BD.getUsuarios().add (usuario);
+                    session.setAttribute("nomeSessao", nomeUsuario);
+                    BD.user = (String) session.getAttribute("nomeSessao");
+               }
            }
            else 
            {             
